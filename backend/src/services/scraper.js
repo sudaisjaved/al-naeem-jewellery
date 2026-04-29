@@ -28,7 +28,10 @@ async function scrapeGoldRates() {
     const rates = {};
 
     for (const [key, label] of Object.entries(karatMap)) {
-      const m = html.match(new RegExp(`"${key}":\\{"yesterday":"[\\d.]+","morning":"([\\d.]+)"`));
+      const full = html.match(new RegExp(`"${key}":\\{([^}]+)}`));
+      if (!full) return;
+      const field = ['evening','afternoon','morning'].find(f => full[1].includes(`"${f}"`));
+      const m = field ? full[1].match(new RegExp(`"${field}":"([\\d.]+)"`)) : null;
       if (m) rates[label] = parseFloat(m[1]);
     }
 
