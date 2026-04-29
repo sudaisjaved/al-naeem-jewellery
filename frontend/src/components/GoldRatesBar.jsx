@@ -18,7 +18,8 @@ export default function GoldRatesBar() {
 
     async function fetchRates() {
       try {
-        const res = await fetch('/api/gold-rates');
+        const base = import.meta.env.VITE_API_URL || '';
+        const res = await fetch(`${base}/api/gold-rates`);
         if (!res.ok) throw new Error('non-200');
         const data = await res.json();
         if (!cancelled) {

@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 3001;
 // Initialise DB on startup
 getDb();
 
-app.use(cors({ origin: process.env.CORS_ORIGIN || 'http://localhost:5173' }));
+const allowedOrigins = (process.env.CORS_ORIGIN || 'http://localhost:5173').split(',').map(o => o.trim());
+app.use(cors({ origin: (origin, cb) => (!origin || allowedOrigins.some(o => origin.startsWith(o)) ? cb(null, true) : cb(new Error('Not allowed'))) }));
 app.use(express.json());
 
 // Routes
