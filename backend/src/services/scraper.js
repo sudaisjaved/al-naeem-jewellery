@@ -106,4 +106,3 @@ function logScrape(success, message) {
 }
 
 module.exports = { scrapeGoldRates, getLatestCachedRates, isCacheStale };
-# Thu Apr 30 13:25:50 +04 2026
