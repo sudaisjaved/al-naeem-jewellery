@@ -111,7 +111,7 @@ export default function GoldCalculator() {
               <div className="calc-breakdown-steps">
                 <div className="calc-step">
                   <div className="calc-step-label">Today's {karat} gold rate</div>
-                  <div className="calc-step-value">{liveRate.toFixed(2)} AED / gram</div>
+                  <div className="calc-step-value">{liveRate.toFixed(2)} AED/g</div>
                 </div>
 
                 <div className="calc-step calc-step--deduct">
@@ -119,12 +119,12 @@ export default function GoldCalculator() {
                     We take off 6%
                     <span className="calc-step-why">Al Naeem standard buy-back rate</span>
                   </div>
-                  <div className="calc-step-value calc-step-value--red">− {deduction.toFixed(2)} AED / gram</div>
+                  <div className="calc-step-value calc-step-value--red">− {deduction.toFixed(2)} AED/g</div>
                 </div>
 
                 <div className="calc-step calc-step--your-rate">
                   <div className="calc-step-label">Your rate per gram</div>
-                  <div className="calc-step-value calc-step-value--accent">{yourRate.toFixed(2)} AED / gram</div>
+                  <div className="calc-step-value calc-step-value--accent">{yourRate.toFixed(2)} AED/g</div>
                 </div>
 
                 <div className="calc-step-divider" />

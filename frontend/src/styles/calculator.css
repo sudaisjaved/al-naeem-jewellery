@@ -133,6 +133,16 @@
     display: block;
     font-size: 0.72rem;
   }
+
+  .calc-step-value {
+    font-size: 0.82rem;
+    white-space: normal;
+    text-align: right;
+  }
+
+  .calc-step-value--big {
+    font-size: 1.25rem;
+  }
 }
 
 .calc-field {
