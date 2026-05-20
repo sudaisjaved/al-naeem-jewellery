@@ -23,7 +23,7 @@ describe('Shop Cards', () => {
     cy.get('[data-testid="shop-whatsapp-btn"]').first().should('contain', 'واٹس ایپ');
   });
 
-  it('nav Find Us button links to Google Maps', () => {
-    cy.get('[data-testid="find-us-btn"]').should('have.attr', 'href').and('include', 'maps.google.com');
+  it('nav Find Us button links to maps', () => {
+    cy.get('[data-testid="find-us-btn"]').should('have.attr', 'href').and('include', 'maps.app.goo.gl');
   });
 });

@@ -7,28 +7,28 @@ describe('Language Switcher', () => {
     cy.get('[data-lang="en"]').should('have.class', 'active');
     cy.get('html').should('have.attr', 'data-theme', 'en');
     cy.get('html').should('have.attr', 'dir', 'ltr');
-    cy.get('[data-testid="hero-headline"]').should('contain', 'Real Gold');
+    cy.get('[data-testid="hero-headline"]').should('contain', 'Where Dubai');
   });
 
   it('switches to Urdu — RTL layout and green theme', () => {
     cy.get('[data-lang="ur"]').click();
     cy.get('html').should('have.attr', 'data-theme', 'ur');
     cy.get('html').should('have.attr', 'dir', 'rtl');
-    cy.get('[data-testid="hero-headline"]').should('contain', 'اصل سونا');
+    cy.get('[data-testid="hero-headline"]').should('contain', 'جہاں دبئی');
   });
 
   it('switches to Hindi — saffron/navy theme, LTR', () => {
     cy.get('[data-lang="hi"]').click();
     cy.get('html').should('have.attr', 'data-theme', 'hi');
     cy.get('html').should('have.attr', 'dir', 'ltr');
-    cy.get('[data-testid="hero-headline"]').should('contain', 'असली सोना');
+    cy.get('[data-testid="hero-headline"]').should('contain', 'जहाँ दुबई');
   });
 
   it('switches to Bengali — green/red theme, LTR', () => {
     cy.get('[data-lang="bn"]').click();
     cy.get('html').should('have.attr', 'data-theme', 'bn');
     cy.get('html').should('have.attr', 'dir', 'ltr');
-    cy.get('[data-testid="hero-headline"]').should('contain', 'আসল সোনা');
+    cy.get('[data-testid="hero-headline"]').should('contain', 'যেখানে দুবাই');
   });
 
   it('Arabic shows coming soon screen, not full page', () => {
@@ -42,7 +42,7 @@ describe('Language Switcher', () => {
   it('can return to English from Arabic via the switch button', () => {
     cy.get('[data-lang="ar"]').click();
     cy.contains('Switch to English').click();
-    cy.get('[data-testid="hero-headline"]').should('contain', 'Real Gold');
+    cy.get('[data-testid="hero-headline"]').should('contain', 'Where Dubai');
   });
 
   it('FAQ questions translate when language changes', () => {

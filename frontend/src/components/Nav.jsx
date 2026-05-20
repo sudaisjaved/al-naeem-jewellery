@@ -2,7 +2,7 @@ import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { LANGUAGE_OPTIONS } from '../translations/index.js';
 
 const WHATSAPP_NUMBER = '971501234567';
-const MAPS_URL = 'https://maps.google.com/?q=Dubai+Gold+Souk+Deira';
+const MAPS_URL = 'https://maps.app.goo.gl/r5D3GnRpm5cbnM3B6';
 
 export default function Nav() {
   const { langCode, setLangCode, t } = useLanguage();

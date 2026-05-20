@@ -1,0 +1,290 @@
+.calculator-section {
+  padding: 5rem 2rem;
+  background-color: var(--bg);
+}
+
+.calculator-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  background-color: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2.5rem;
+  box-shadow: 0 4px 24px var(--shadow);
+}
+
+.calc-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.calc-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--dark);
+  margin-bottom: 0.4rem;
+}
+
+.calc-intro-question {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.45;
+}
+
+.calc-intro-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.calc-intro-disclaimer {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-dark, var(--accent));
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  white-space: nowrap;
+  align-self: flex-start;
+}
+
+/* Two-column layout */
+.calc-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.calc-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .calc-body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.calc-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+/* Karat pills */
+.calc-karat-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.calc-karat-pill {
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.calc-karat-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.calc-karat-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Gram stepper */
+.calc-stepper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.calc-step-btn {
+  width: 48px;
+  height: 48px;
+  background: var(--bg-secondary);
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text);
+  transition: background 0.15s;
+  flex-shrink: 0;
+}
+
+.calc-step-btn:hover {
+  background: var(--border);
+}
+
+.calc-gram-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+  color: var(--dark);
+  background: transparent;
+  padding: 0.5rem;
+  -moz-appearance: textfield;
+}
+
+.calc-gram-input::-webkit-inner-spin-button,
+.calc-gram-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Breakdown card */
+.calc-breakdown-card {
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.calc-breakdown-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.calc-breakdown-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.calc-step {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.calc-step-label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  flex: 1;
+}
+
+.calc-step-why {
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+.calc-step-value {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--dark);
+  white-space: nowrap;
+  font-family: var(--font-display);
+}
+
+.calc-step-value--red {
+  color: #c0392b;
+}
+
+.calc-step-value--accent {
+  color: var(--accent);
+}
+
+.calc-step-value--big {
+  font-size: 1.6rem;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.calc-step--your-rate {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 0.6rem 0.75rem;
+  margin: 0 -0.25rem;
+}
+
+.calc-step--total {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 0.75rem;
+  margin: 0 -0.25rem;
+  align-items: center;
+}
+
+.calc-step-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0;
+}
+
+.calc-footer-note {
+  margin-top: 1rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  border-top: 1px solid var(--border);
+  padding-top: 0.875rem;
+}
+
+/* Fallback when rates not loaded */
+.calc-result-card {
+  padding: 1.75rem 1.5rem;
+  background: var(--bg-secondary);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  text-align: center;
+}
+
+.calc-result-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.calc-result-amount {
+  font-family: var(--font-display);
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.calc-disclaimer {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
