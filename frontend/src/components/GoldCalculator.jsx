@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useInView } from '../hooks/useInView.js';
 
-const KARATS = ['24K', '22K', '21K', '18K', '14K'];
+const KARATS = ['24K', '22K'];
 
 export default function GoldCalculator() {
   const { t } = useLanguage();
@@ -117,7 +117,7 @@ export default function GoldCalculator() {
                 <div className="calc-step calc-step--deduct">
                   <div className="calc-step-label">
                     We take off 6%
-                    <span className="calc-step-why"> — this covers our cost to melt and refine the gold</span>
+                    <span className="calc-step-why"> — Al Naeem's standard buy-back rate</span>
                   </div>
                   <div className="calc-step-value calc-step-value--red">− {deduction.toFixed(2)} AED / gram</div>
                 </div>
