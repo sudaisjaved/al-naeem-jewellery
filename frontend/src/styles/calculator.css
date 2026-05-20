@@ -71,14 +71,24 @@
 
 @media (max-width: 768px) {
   .calculator-section {
-    padding: 4rem 1rem;
+    padding: 4rem 0.75rem;
     overflow: hidden;
   }
 
   .calculator-container {
-    padding: 1.5rem 1rem;
+    padding: 1.25rem 0.875rem;
     overflow: hidden;
     width: 100%;
+    max-width: calc(100vw - 1.5rem);
+    box-sizing: border-box;
+  }
+
+  .calc-col,
+  .calc-stepper,
+  .calc-breakdown-card,
+  .calc-karat-pills {
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .calc-body {
