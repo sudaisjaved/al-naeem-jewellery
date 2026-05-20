@@ -1321,6 +1321,26 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .faq-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .faq-body {
+    gap: 1.5rem;
+  }
+
+  .shops-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shops-section {
+    padding: 4rem 1.25rem;
+  }
+
+  .rates-section {
+    padding: 3rem 1.25rem;
+  }
+
   .lang-switcher-mobile {
     display: flex;
     overflow-x: auto;
