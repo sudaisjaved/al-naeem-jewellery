@@ -111,12 +111,27 @@
     font-size: 0.82rem;
   }
 
+  .calc-step-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .calc-gram-input {
+    font-size: 1.05rem;
+  }
+
   .calc-step-value--big {
     font-size: 1.3rem;
   }
 
   .calc-breakdown-card {
     padding: 1.25rem 1rem;
+  }
+
+  .calc-step-why {
+    display: block;
+    font-size: 0.72rem;
   }
 }
 

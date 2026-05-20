@@ -117,7 +117,7 @@ export default function GoldCalculator() {
                 <div className="calc-step calc-step--deduct">
                   <div className="calc-step-label">
                     We take off 6%
-                    <span className="calc-step-why"> — Al Naeem's standard buy-back rate</span>
+                    <span className="calc-step-why">Al Naeem standard buy-back rate</span>
                   </div>
                   <div className="calc-step-value calc-step-value--red">− {deduction.toFixed(2)} AED / gram</div>
                 </div>
