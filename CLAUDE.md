@@ -76,7 +76,7 @@ To add a new language: add an entry to `translations/index.js` and `LANGUAGE_OPT
 
 ## Deployment
 
-Backend is deployed on **Railway** (`backend/railway.json`). Start command: `node src/server.js`. No frontend deployment config is present — frontend is a static Vite build.
+Backend is deployed on **Render** (`https://al-naeem-jewellery.onrender.com`). Start command: `node src/server.js`. Frontend is deployed on **Vercel** (`https://al-naeem-jewellery.vercel.app`). `VITE_API_URL` is set in both `frontend/.env.production` and Vercel's dashboard environment variables.
 
 ## Recent Updates (May 2026)
 
