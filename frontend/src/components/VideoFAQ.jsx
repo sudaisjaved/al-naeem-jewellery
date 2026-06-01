@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useInView } from '../hooks/useInView.js';
 
@@ -10,74 +10,35 @@ const PURITY_DATA = [
   { k: '14K', pct: 58.3, hallmark: '585', label: 'Hard-wearing everyday wear' },
 ];
 
-const KARATS = ['24K', '22K', '21K', '18K', '14K'];
-
-function HallmarkPopup() {
-  const [open, setOpen] = useState(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    if (!open) return;
-    function handleClick(e) {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
-    }
-    document.addEventListener('mousedown', handleClick);
-    return () => document.removeEventListener('mousedown', handleClick);
-  }, [open]);
-
-  return (
-    <div className="hallmark-popup-wrap" ref={ref}>
-      <button
-        type="button"
-        className="hallmark-info-btn"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        aria-label="Hallmark guide"
-      >
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
-        </svg>
-        How to read hallmarks
-      </button>
-      {open && (
-        <div className="hallmark-popup" role="tooltip">
-          <p>Every genuine piece has a tiny stamp — this is the hallmark. Look for it before you buy.</p>
-          <ul className="hallmark-popup-list">
-            <li><strong>999</strong> — 24K pure gold</li>
-            <li><strong>916</strong> — 22K gold</li>
-            <li><strong>875</strong> — 21K gold</li>
-            <li><strong>750</strong> — 18K gold</li>
-            <li><strong>585</strong> — 14K gold</li>
-          </ul>
-          <p className="hallmark-popup-warn">No stamp? Ask before you pay.</p>
-        </div>
-      )}
-    </div>
-  );
-}
-
 function KaratPurityGuide() {
   return (
     <div className="faq-card">
       <h3 className="faq-card-title">What do 24K, 22K, 18K actually mean?</h3>
+      <p className="faq-card-subtitle">
+        The number tells you how much of the piece is pure gold. The rest is other metals mixed in for strength.
+      </p>
+
       <div className="purity-guide">
         {PURITY_DATA.map(({ k, pct, hallmark, label }) => (
-          <div key={k} className="purity-row">
-            <div className="purity-meta">
-              <span className="purity-karat">{k}</span>
-              <span className="purity-label-text">{label}</span>
-            </div>
-            <div className="purity-bar-wrap" title={`${pct}% gold`}>
+          <div key={k} className="purity-col">
+            <div className="purity-karat">{k}</div>
+            <div className="purity-label-text">{label}</div>
+            <div className="purity-bar-wrap">
               <div className="purity-bar-fill" style={{ width: `${pct}%` }} />
               <div className="purity-bar-rest" style={{ width: `${100 - pct}%` }} />
             </div>
-            <div className="purity-stats">
-              <span className="purity-pct">{pct}% gold</span>
-              <span className="purity-hallmark">Stamp: <strong>{hallmark}</strong></span>
+            <div className="purity-pct">{pct}%</div>
+            <div className="purity-stamp">
+              <span className="purity-stamp-label">Hallmark</span>
+              <span className="purity-stamp-value">{hallmark}</span>
             </div>
           </div>
         ))}
-        <HallmarkPopup />
+      </div>
+
+      <div className="purity-tip-inline">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Every genuine piece has one of these stamps. Before you buy anywhere — check for the hallmark. <strong>No stamp? Don't buy it.</strong>
       </div>
     </div>
   );
@@ -211,7 +172,7 @@ export default function VideoFAQ() {
   return (
     <section className="faq-section" aria-labelledby="faq-title" data-testid="faq-section">
       <h2
-        className={`section-title reveal-up${titleVisible ? ' is-visible' : ''}`}
+        className={`section-title section-title--center reveal-up${titleVisible ? ' is-visible' : ''}`}
         id="faq-title"
         ref={titleRef}
       >
@@ -223,10 +184,9 @@ export default function VideoFAQ() {
         ref={bodyRef}
         style={{ transitionDelay: '0.08s' }}
       >
-        {/* Interactive cards — always visible, side by side */}
+        {/* Karat guide — full width */}
         <div className="faq-cards-grid">
           <KaratPurityGuide />
-          <GoldPriceCalculator rates={rates} />
         </div>
 
         {/* Text Q&As — open, no accordion needed */}

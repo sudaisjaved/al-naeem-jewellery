@@ -11,7 +11,7 @@
   --text-muted: #7a5828;
   --border: #ddc07a;
   --card-bg: #fffef8;
-  --shadow: rgba(12, 8, 4, 0.14);
+  --shadow: rgba(92, 58, 4, 0.13);
   --font-body: 'Inter', sans-serif;
   --font-display: 'Playfair Display', serif;
 }
@@ -78,6 +78,8 @@ html {
 body {
   font-family: var(--font-body);
   background-color: var(--bg);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
   color: var(--text);
   line-height: 1.6;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -206,7 +208,8 @@ body {
 /* ── Hero ── */
 .hero {
   min-height: calc(100vh - 64px);
-  background: linear-gradient(160deg, #0e0905 0%, #1c1208 45%, #0e0905 100%);
+  background:
+    linear-gradient(160deg, #100a04 0%, #1e1409 55%, #0e0905 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -216,22 +219,29 @@ body {
   overflow: hidden;
 }
 
-.hero-dots {
+/* Grain texture — breaks the synthetic gradient */
+.hero::after {
+  content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(184, 134, 11, 0.07) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.055;
   pointer-events: none;
+  z-index: 0;
+}
+
+.hero-dots {
+  display: none;
 }
 
 .hero-glow {
   position: absolute;
-  width: 600px;
-  height: 600px;
+  width: 500px;
+  height: 500px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(184, 134, 11, 0.1) 0%, transparent 65%);
-  top: 50%;
-  right: 15%;
+  background: radial-gradient(circle, rgba(184, 134, 11, 0.07) 0%, transparent 70%);
+  top: 40%;
+  right: 10%;
   transform: translateY(-50%);
   pointer-events: none;
 }
@@ -273,20 +283,41 @@ body {
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 700;
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 400;
+  font-style: italic;
   color: #fff;
-  line-height: 1.08;
+  line-height: 1.15;
   margin-bottom: 1.5rem;
-  letter-spacing: -0.01em;
+  letter-spacing: 0.01em;
 }
 
 .hero-subtext {
   font-size: 1.05rem;
   color: rgba(255, 255, 255, 0.5);
   max-width: 440px;
-  margin-bottom: 2.75rem;
+  margin-bottom: 1.75rem;
   line-height: 1.8;
+}
+
+.hero-quote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-top: 0;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  max-width: 380px;
+}
+
+.hero-quote cite {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  font-style: normal;
+  color: var(--accent);
+  letter-spacing: 0.06em;
 }
 
 .hero-cta {
@@ -300,60 +331,59 @@ body {
   font-size: 0.95rem;
 }
 
-/* Decorative rings */
-.hero-decor {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 420px;
-}
-
-.hero-ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(184, 134, 11, 0.18);
-}
-
-.hero-ring--1 { width: 380px; height: 380px; }
-.hero-ring--2 { width: 290px; height: 290px; border-color: rgba(184, 134, 11, 0.25); }
-.hero-ring--3 { width: 200px; height: 200px; border-color: rgba(184, 134, 11, 0.35); border-width: 1.5px; }
-.hero-ring--4 { width: 110px; height: 110px; border-color: rgba(184, 134, 11, 0.5); border-width: 2px; }
-
-.hero-ring-center {
-  position: relative;
-  z-index: 1;
+/* Editorial year stamp — replaces the concentric rings */
+.hero-stamp {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  text-align: center;
-  gap: 0.2rem;
+  padding-left: 3rem;
+  border-left: 1px solid rgba(184, 134, 11, 0.25);
+  gap: 0.25rem;
+  user-select: none;
 }
 
-.hero-ring-year {
-  font-family: var(--font-display);
-  font-size: 2.75rem;
-  font-weight: 700;
-  color: rgba(245, 204, 80, 0.45);
-  line-height: 1;
-  letter-spacing: -0.02em;
-}
-
-.hero-ring-label {
-  font-size: 0.6rem;
-  letter-spacing: 0.22em;
+.hero-stamp-est {
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: rgba(245, 204, 80, 0.3);
+  color: rgba(245, 204, 80, 0.45);
+  font-family: var(--font-body);
 }
 
-/* Subtle ring rotate animation */
-.hero-ring--1 { animation: ringRotate 60s linear infinite; }
-.hero-ring--2 { animation: ringRotate 45s linear infinite reverse; }
+.hero-stamp-year {
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 10vw, 8.5rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 0.9;
+  color: rgba(245, 204, 80, 0.12);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+}
 
-@keyframes ringRotate {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+.hero-stamp-line {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: rgba(184, 134, 11, 0.35);
+  margin: 0.25rem 0;
+}
+
+.hero-stamp-name {
+  font-family: var(--font-display);
+  font-size: 0.9rem;
+  font-style: italic;
+  color: rgba(245, 204, 80, 0.35);
+  letter-spacing: 0.02em;
+}
+
+.hero-stamp-location {
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: var(--font-body);
 }
 
 .hero-scroll {
@@ -395,6 +425,10 @@ body {
 
   .hero-content {
     text-align: center;
+  }
+
+  .hero-stamp {
+    display: none;
   }
 
   .hero-eyebrow {
@@ -481,6 +515,19 @@ body {
   transition: border-color 0.2s, background 0.2s;
 }
 
+/* 24K and 22K are what we sell — make them stand out */
+.rate-big-item[data-testid="rate-24K"],
+.rate-big-item[data-testid="rate-22K"] {
+  background: rgba(184, 134, 11, 0.07);
+  border-color: rgba(184, 134, 11, 0.35);
+  padding: 1.5rem 0.5rem;
+}
+
+.rate-big-item[data-testid="rate-24K"] .rate-big-price,
+.rate-big-item[data-testid="rate-22K"] .rate-big-price {
+  font-size: 1.75rem;
+}
+
 .rate-big-item:hover {
   border-color: rgba(184, 134, 11, 0.45);
   background: rgba(184, 134, 11, 0.06);
@@ -490,7 +537,7 @@ body {
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.38);
+  color: rgba(255, 255, 255, 0.7);
   margin-bottom: 0.6rem;
 }
 
@@ -505,13 +552,13 @@ body {
 
 .rate-big-unit {
   font-size: 0.62rem;
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.04em;
 }
 
 .rates-meta-dark {
   font-size: 0.68rem;
-  color: rgba(255, 255, 255, 0.22);
+  color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.04em;
 }
 
@@ -743,6 +790,10 @@ body {
   font-size: 1.75rem;
   color: var(--dark);
   margin-bottom: 2.5rem;
+  text-align: left;
+}
+
+.section-title--center {
   text-align: center;
 }
 
@@ -757,9 +808,8 @@ body {
 /* Two interactive cards side by side */
 .faq-cards-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  align-items: stretch;
 }
 
 .faq-card {
@@ -809,36 +859,60 @@ body {
 }
 
 /* ── Karat Purity Guide ── */
+.faq-card-subtitle {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
 .purity-guide {
-  display: flex;
-  flex-direction: column;
-  gap: 0.875rem;
-  padding-top: 0.25rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.25rem;
 }
 
-.purity-row {
+.purity-col {
+  padding: 1.25rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  gap: 0.5rem;
+  border-right: 1px solid var(--border);
 }
 
-.purity-meta {
-  display: flex;
-  align-items: baseline;
-  gap: 0.625rem;
+.purity-col:last-child {
+  border-right: none;
+}
+
+@media (max-width: 768px) {
+  .purity-guide {
+    grid-template-columns: 1fr 1fr;
+  }
+  .purity-col:nth-child(2) {
+    border-right: none;
+  }
+  .purity-col {
+    border-bottom: 1px solid var(--border);
+  }
 }
 
 .purity-karat {
   font-family: var(--font-display);
-  font-size: 0.95rem;
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--dark);
-  min-width: 2.5rem;
+  line-height: 1;
 }
 
 .purity-label-text {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--text-muted);
+  line-height: 1.4;
+  min-height: 2rem;
 }
 
 .purity-bar-wrap {
@@ -860,32 +934,59 @@ body {
   background: rgba(160, 130, 80, 0.15);
 }
 
-.purity-stats {
-  display: flex;
-  gap: 1.25rem;
-  font-size: 0.75rem;
-}
-
 .purity-pct {
+  font-size: 0.875rem;
+  font-weight: 700;
   color: var(--accent);
-  font-weight: 600;
 }
 
-.purity-hallmark {
+.purity-stamp {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.purity-stamp-label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
 }
 
-.purity-hallmark strong {
-  color: var(--dark);
+.purity-stamp-value {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
   font-weight: 700;
+  color: var(--dark);
+  letter-spacing: 0.02em;
 }
 
-.hallmark-popup-wrap {
-  position: relative;
-  margin-top: auto;
-  padding-top: 1rem;
-  display: inline-block;
+.purity-tip-inline {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  padding: 0.75rem 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
 }
+
+.purity-tip-inline svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--accent);
+}
+
+.purity-tip-inline strong {
+  color: var(--dark);
+}
+
+/* hallmark popup removed — info now inline in purity guide */
 
 .hallmark-info-btn {
   display: inline-flex;
@@ -1197,6 +1298,14 @@ body {
 
 .shop-contact-number:hover {
   color: var(--accent);
+}
+
+.shop-invite {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 0.75rem;
 }
 
 .shop-actions {

@@ -1,4 +1,3 @@
-import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useInView } from '../hooks/useInView.js';
 
@@ -9,74 +8,46 @@ function formatTime(isoString) {
   return new Date(isoString).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 }
 
-export default function GoldRatesBar() {
+export default function GoldRatesBar({ ratesData, refreshing, onRefresh }) {
   const { t } = useLanguage();
-  const [state, setState] = useState({ rates: null, fetchedAt: null, source: null, loading: true, error: false });
-  const [refreshing, setRefreshing] = useState(false);
   const [ref, visible] = useInView({ threshold: 0.1 });
-
-  const fetchRates = useCallback(async (forceRefresh = false) => {
-    const base = import.meta.env.VITE_API_URL || '';
-    const url = forceRefresh ? `${base}/api/gold-rates?refresh=true` : `${base}/api/gold-rates`;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('non-200');
-      const data = await res.json();
-      setState({ rates: data.rates, fetchedAt: data.fetchedAt, source: data.source, loading: false, error: false });
-    } catch {
-      setState((s) => ({ ...s, loading: false, error: true }));
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchRates(false);
-  }, [fetchRates]);
-
-  async function handleRefresh() {
-    setRefreshing(true);
-    await fetchRates(true);
-    setRefreshing(false);
-  }
-
+  const { rates, fetchedAt, source, loading, error } = ratesData;
   const gr = t.goldRates;
 
   return (
     <section className="rates-section" aria-label={gr.title} data-testid="gold-rates-bar">
-      <div
-        className={`rates-section-inner reveal-up${visible ? ' is-visible' : ''}`}
-        ref={ref}
-      >
+      <div className={`rates-section-inner reveal-up${visible ? ' is-visible' : ''}`} ref={ref}>
         <div className="rates-section-header">
           <h2 className="rates-section-title">{gr.title}</h2>
           <div className="rates-live">
             <span className="live-dot" />
-            {state.source === 'live' ? gr.live : state.source === 'fallback' ? gr.fallback : ''}
+            {source === 'live' ? gr.live : source === 'fallback' ? gr.fallback : ''}
           </div>
         </div>
 
-        {state.loading && <div className="rates-loading-dark">{gr.loading}</div>}
-        {state.error && !state.rates && <div className="rates-error-dark">{gr.error}</div>}
+        {loading && <div className="rates-loading-dark">{gr.loading}</div>}
+        {error && !rates && <div className="rates-error-dark">{gr.error}</div>}
 
-        {state.rates && (
+        {rates && (
           <>
             <div className="rates-big-grid">
-              {KARAT_ORDER.filter((k) => state.rates[k]).map((karat) => (
+              {KARAT_ORDER.filter((k) => rates[k]).map((karat) => (
                 <div className="rate-big-item" key={karat} data-testid={`rate-${karat}`}>
                   <div className="rate-big-karat">{karat}</div>
-                  <div className="rate-big-price">{state.rates[karat].toFixed(2)}</div>
+                  <div className="rate-big-price">{rates[karat].toFixed(2)}</div>
                   <div className="rate-big-unit">{gr.aed} / gram</div>
                 </div>
               ))}
             </div>
             <div className="rates-footer-row">
-              {state.fetchedAt && (
+              {fetchedAt && (
                 <div className="rates-meta-dark">
-                  {gr.lastUpdated}: {formatTime(state.fetchedAt)}
+                  {gr.lastUpdated}: {formatTime(fetchedAt)}
                 </div>
               )}
               <button
                 className={`rates-refresh-btn${refreshing ? ' spinning' : ''}`}
-                onClick={handleRefresh}
+                onClick={onRefresh}
                 disabled={refreshing}
                 aria-label="Refresh gold rates"
               >

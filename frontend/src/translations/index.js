@@ -8,12 +8,12 @@ export const translations = {
       findUs: 'Find Us',
     },
     hero: {
-      headline: "Whatever you're looking for in gold — we have it.",
+      headline: 'Honest gold prices, since before Dubai was famous for them.',
       subtext:
-        'Two shops in Dubai Gold Souk, Deira. A trusted family business welcoming everyone for 35 years.',
+        'We opened in 1989 — when the Gold Souk was just a covered market and Dubai was a different city. Same family. Same corner. Same prices you can trust.',
       legacyTitle: '35 Years in the Gold Souk',
       legacyQuote:
-        'Gold should be for everyone — not just the wealthy. We have always believed in honest prices and people first.',
+        'Gold should be for everyone — not just the wealthy.',
       legacyFounder: '— Founder, Al Naeem Jewellery',
     },
     why: {
@@ -59,7 +59,7 @@ export const translations = {
       disclaimer: 'Estimate only. Our policy: current gold rate less 6%, multiplied by your grams. No hidden fees — what you see is what you get.'
     },
     faq: {
-      title: 'Common Questions',
+      title: 'Things people ask us',
       questions: [
         'What karat should I buy?',
         'How is gold price calculated?',
@@ -67,32 +67,32 @@ export const translations = {
         'What are making charges?',
       ],
       answers: [
-        '22K is the karat we sell — the most popular choice for jewellery, strong and close to pure gold. It suits everything from everyday wear to intricate bridal pieces.',
-        'Price = ((grams × rate per gram) + making charges) × 1.05 — the 1.05 covers UAE\'s 5% VAT. Our live board shows today\'s rate so you can estimate before you walk in.',
-        'Yes. Dubai\'s Gold Souk is government-regulated and all gold is hallmarked and certified. We\'ve been licensed traders here since 1989.',
-        'Making charges cover the skilled labour of crafting the piece. A simple bangle costs less to make than a detailed necklace — it varies by design complexity.',
+        "We sell 22K — it's the sweet spot. Strong enough for daily wear, pure enough to hold value, and what most families in the Gulf choose for jewellery. If you're buying gold as an investment, 24K is what you want.",
+        "Simple: grams × today's rate + making charges, then add 5% VAT. The rate on our board is the same rate you pay — we don't mark it up. Use our calculator above to get a number before you even walk in.",
+        "Yes — and we've been licensed traders here since 1989. Every piece is hallmarked. Look for the stamp: 916 for 22K, 999 for 24K. If anyone sells you gold without a hallmark, walk away.",
+        "Making charges are what the craftsman gets paid. A plain bangle takes an hour. A bridal set can take days. That's why it varies — it's skilled work, not a hidden fee.",
       ],
     },
     shops: {
-      title: 'Visit Us in the Gold Souk',
-      whatsapp: 'WhatsApp',
-      directions: 'Directions',
+      title: 'Come see us',
+      whatsapp: 'Chat with us',
+      directions: 'Get directions',
       shop1: {
         name: 'Al Naeem Jewellery — Shop 1',
         area: 'Gold Souk, Near Gold Center, Deira, Dubai',
-        desc: 'Our original shop — every karat, every style, for every occasion.',
+        desc: 'This is where we started. Same spot since 1989.',
         hours: 'Sat–Thu: 10:30am–10:30pm · Fri: 4:30pm–10:30pm',
       },
       shop2: {
         name: 'Al Naeem Jewellery — Shop 2',
         area: 'Gold Center, Shop 43–44, Gold Souk, Deira, Dubai',
-        desc: 'In the heart of Gold Center — perfect for first-timers and regulars alike.',
+        desc: 'Inside Gold Center — easier to find, same family behind the counter.',
         hours: 'Sat–Thu: 10:30am–10:30pm · Fri: 4:30pm–10:30pm',
       },
     },
     footer: {
       text: '© 2026 Al Naeem Jewellery · Dubai Gold Souk, Deira · Family-run since 1989',
-      noOnlineSales: 'Showcase only — no online sales',
+      noOnlineSales: 'We don\'t sell online — come visit us or send a WhatsApp.',
     },
   },
 

@@ -1,6 +1,8 @@
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { useInView } from '../hooks/useInView.js';
 
+const WA_MSG = encodeURIComponent('Hi, I saw your website and wanted to ask about gold prices.');
+
 const SHOPS_CONTACT = {
   shop1: {
     whatsapp: '971552562336',
@@ -33,10 +35,11 @@ function ShopCard({ shop, badge, contact, t }) {
           <a className="shop-contact-number" href={`https://wa.me/${contact.whatsapp}`} target="_blank" rel="noopener noreferrer">{contact.whatsappDisplay}</a>
         )}
       </div>
+      <p className="shop-invite">Come in, look around — no pressure. Or message us first.</p>
       <div className="shop-actions">
         <a
           className="btn btn-whatsapp"
-          href={`https://wa.me/${contact.whatsapp}`}
+          href={`https://wa.me/${contact.whatsapp}?text=${WA_MSG}`}
           target="_blank"
           rel="noopener noreferrer"
           data-testid="shop-whatsapp-btn"
@@ -64,13 +67,15 @@ export default function ShopCards() {
 
   return (
     <section className="shops-section" aria-labelledby="shops-title" data-testid="shops-section">
-      <h2
-        className={`section-title reveal-up${titleVisible ? ' is-visible' : ''}`}
-        id="shops-title"
-        ref={titleRef}
-      >
-        {t.shops.title}
-      </h2>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', width: '100%' }}>
+        <h2
+          className={`section-title reveal-up${titleVisible ? ' is-visible' : ''}`}
+          id="shops-title"
+          ref={titleRef}
+        >
+          {t.shops.title}
+        </h2>
+      </div>
       <div className="shops-grid" ref={gridRef}>
         <div className={`reveal-from-left${gridVisible ? ' is-visible' : ''}`}>
           <ShopCard shop={t.shops.shop1} badge="Shop 1" contact={SHOPS_CONTACT.shop1} t={t} />

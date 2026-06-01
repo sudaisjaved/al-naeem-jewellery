@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from './contexts/LanguageContext.jsx';
 import Nav from './components/Nav.jsx';
 import Hero from './components/Hero.jsx';
@@ -22,6 +23,29 @@ function ArabicComingSoon() {
 
 export default function App() {
   const { langCode } = useLanguage();
+  const [ratesData, setRatesData] = useState({ rates: null, fetchedAt: null, source: null, loading: true, error: false });
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchRates = useCallback(async (forceRefresh = false) => {
+    const base = import.meta.env.VITE_API_URL || '';
+    const url = forceRefresh ? `${base}/api/gold-rates?refresh=true` : `${base}/api/gold-rates`;
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('non-200');
+      const data = await res.json();
+      setRatesData({ rates: data.rates, fetchedAt: data.fetchedAt, source: data.source, loading: false, error: false });
+    } catch {
+      setRatesData((s) => ({ ...s, loading: false, error: true }));
+    }
+  }, []);
+
+  useEffect(() => { fetchRates(false); }, [fetchRates]);
+
+  async function handleRefresh() {
+    setRefreshing(true);
+    await fetchRates(true);
+    setRefreshing(false);
+  }
 
   return (
     <>
@@ -31,8 +55,8 @@ export default function App() {
       ) : (
         <>
           <Hero />
-          <GoldRatesBar />
-          <GoldCalculator />
+          <GoldRatesBar ratesData={ratesData} refreshing={refreshing} onRefresh={handleRefresh} />
+          <GoldCalculator rates={ratesData.rates} />
           <VideoFAQ />
           <ShopCards />
           <Footer />

@@ -1,13 +1,14 @@
 import { useLanguage } from '../contexts/LanguageContext.jsx';
 import { LANGUAGE_OPTIONS } from '../translations/index.js';
 
-const WHATSAPP_NUMBER = '971501234567';
-const MAPS_URL = 'https://maps.app.goo.gl/r5D3GnRpm5cbnM3B6';
+const WHATSAPP_NUMBER = '971552562336';
+const MAPS_URL = 'https://maps.app.goo.gl/hhQoZHBr6a5Uv6co9';
+const WA_MESSAGE = encodeURIComponent('Hi, I saw your website and wanted to ask about gold prices.');
 
 export default function Nav() {
   const { langCode, setLangCode, t } = useLanguage();
 
-  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}`;
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WA_MESSAGE}`;
 
   return (
     <>

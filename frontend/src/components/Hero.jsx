@@ -18,17 +18,18 @@ export default function Hero() {
             {h.headline}
           </h1>
           <p className="hero-subtext">{h.subtext}</p>
+          <blockquote className="hero-quote">
+            <span>"{h.legacyQuote}"</span>
+            <cite>{h.legacyFounder}</cite>
+          </blockquote>
         </div>
 
-        <div className="hero-decor" aria-hidden="true">
-          <div className="hero-ring hero-ring--1" />
-          <div className="hero-ring hero-ring--2" />
-          <div className="hero-ring hero-ring--3" />
-          <div className="hero-ring hero-ring--4" />
-          <div className="hero-ring-center">
-            <span className="hero-ring-year">1989</span>
-            <span className="hero-ring-label">Est.</span>
-          </div>
+        <div className="hero-stamp" aria-hidden="true">
+          <span className="hero-stamp-est">Est.</span>
+          <span className="hero-stamp-year">1989</span>
+          <span className="hero-stamp-line" />
+          <span className="hero-stamp-name">Al Naeem Jewellery</span>
+          <span className="hero-stamp-location">Dubai Gold Souk · Deira</span>
         </div>
       </div>
 
